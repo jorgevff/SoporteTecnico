@@ -29,7 +29,8 @@ public class InputReader
     public String getInput()
     {
         System.out.print("> ");         // print prompt
-        String inputLine = reader.nextLine();
+        //al dividir con split la cadena se crea un array de cadenas y por eso se indica por ultimo la posicion de elemento a devolver, en este caso el primero
+        String inputLine = reader.nextLine().split(" ")[0];
 
         return inputLine;
     }

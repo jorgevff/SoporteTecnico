@@ -1,3 +1,6 @@
+
+import java.util.HashSet;
+
 /**
  * This class implements a technical support system. It is the top
  * level class in this project. The support system communicates via
