@@ -40,9 +40,9 @@ public class SupportSystem
         printWelcome();
 
         while(!finished) {
-            String input = reader.getInput();
-            input = input.trim().toLowerCase();
-            if(input.equals("bye")) {
+            HashSet <String> input = reader.getInput();
+            
+            if(input.contains("bye")) {
                 finished = true;
             }
             else {

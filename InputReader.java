@@ -26,12 +26,19 @@ public class InputReader
      *
      * @return  A String typed by the user.
      */
-    public String getInput()
+    public HashSet<String> getInput()
     {
         System.out.print("> ");         // print prompt
         //al dividir con split la cadena se crea un array de cadenas y por eso se indica por ultimo la posicion de elemento a devolver, en este caso el primero
-        String inputLine = reader.nextLine().split(" ")[0];
+        //String inputLine = reader.nextLine().split(" ")[0];
+        String inputLine = reader.nextLine();
+        String[] arrayPalabras = inputLine.split(" ");
+        
+        HashSet<String> palabrasSeparadas = new HashSet<>();
+        for(String palabraActual : arrayPalabras){
+            palabrasSeparadas.add(palabraActual);
+        }
 
-        return inputLine;
+        return palabrasSeparadas;
     }
 }
