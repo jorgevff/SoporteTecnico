@@ -13,20 +13,51 @@ import java.util.Iterator;
  */
 public class Responder
 {
-    private HashMap<String, String> respuestas;
+    private ArrayList<String> respuestasAleatorias;
+    private HashMap<HashSet<String>, String> respuestas;
+    private Random aleatorio;
+    
     
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
-        respuestas = new HashMap<>();
         
-        respuestas.put("menu", "Prueba con la primera pestaña");
+        
+        aleatorio = new Random();
+        respuestas = new HashMap<>();
+        respuestasAleatorias = new ArrayList<>();
+        
+        respuestasAleatorias.add("Instrucción incorrecta");
+        respuestasAleatorias.add("Pensando...");
+        respuestasAleatorias.add("Indica mejor el problema");
+        respuestasAleatorias.add("Eso estodo amigos!!");
+        //creamos conjuntos
+        
+        HashSet<String> conjunto1 = new HashSet<>();
+        conjunto1.add("menu");
+        conjunto1.add("archivo");
+        
+        HashSet<String> conjunto2 = new HashSet<>();
+        conjunto2.add("reinicio");
+        conjunto2.add("reseteo");
+        
+        HashSet<String> conjunto3 = new HashSet<>();
+        conjunto3.add("problema");
+        conjunto3.add("menu");
+        
+        HashSet<String> conjunto4 = new HashSet<>();
+        conjunto4.add("power");
+        conjunto4.add("bucle");
+        conjunto4.add("of");
+        
+        
+        respuestas.put(conjunto1, "Prueba con la primera pestaña");
         //porque con la primera en mayuscula no funciona?
-        respuestas.put("reinicio", "Reinicia por segunda vez");
-        respuestas.put("problema", "Sigue los pasos tres y cuatro del manual");
-        respuestas.put("power", "Tira de la palanca...");
+        respuestas.put(conjunto2, "Reinicia por segunda vez");
+        respuestas.put(conjunto3, "Sigue los pasos tres y cuatro del manual");
+        respuestas.put(conjunto4, "Tira de la palanca...");
     }
 
     /**
@@ -37,17 +68,7 @@ public class Responder
     {
         String respuesta = null;
        
-        boolean palabraEncontrada = true;
-        //no entiendo explicacion 0095
-        Iterator<String> iterador = palabraClave.iterator();
-        while (iterador.hasNext() && palabraEncontrada){
-            respuesta = respuestas.get(iterador.next());
-            if(respuesta != null){
-
-                palabraEncontrada = false;
-            }
-            
-        }
+        respuesta = respuestas.get(palabraClave);
         /**String palabraIntroducidaPorTeclado = "";
         for(String palabra : palabraClave){
           palabraIntroducidaPorTeclado = palabra;  
@@ -55,7 +76,8 @@ public class Responder
         **/
 
         if(respuesta == null){
-            respuesta = "Buena pregunta, puedes especificar tu problema?";
+            int posicionAleatoria = aleatorio.nextInt(respuestasAleatorias.size());
+            respuesta = respuestasAleatorias.get(posicionAleatoria);
         }
         
         return respuesta;
